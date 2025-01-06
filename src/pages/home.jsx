@@ -1,6 +1,7 @@
 import { use } from "react";
 import MovieCard from "../components/movieCard";
 import { useState } from "react";
+import "../css/Home.css"
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -9,6 +10,7 @@ function Home() {
     { id: 1, title: "Breaking Bad", release_date: "2010" },
     { id: 2, title: "Ransom", release_date: "2013" },
     { id: 3, title: "Joker", release_date: "2022" },
+    {id: 4, title: "Legacy", release_date: "2018"},
   ];
 
   const handleSearch = (e) => {
