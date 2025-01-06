@@ -9,7 +9,7 @@ function MovieCard ({movie}) {
             <img src = {movie.url} alt = {movie.title}/>
             <div className = "movie-overlay">
                 <button className = "favorite" onClick={onFavorite}>
-                    //heart emoji
+                    /heart emoji
                     </button>
                     </div>
             </div>
