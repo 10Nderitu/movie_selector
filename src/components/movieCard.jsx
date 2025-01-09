@@ -6,8 +6,10 @@ function MovieCard ({movie}) {
     const favorite = isFavorite(movie.id)
 
     
-    function onFavorite(){
-        alert("clicked")
+    function onFavorite(e){
+        e.preventDefault()
+        if (favorite) removeFromFavorites(movie.id)
+        else addToFavorites(movie)
     }
 
     return <div className = "movie-card">
