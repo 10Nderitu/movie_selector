@@ -4,7 +4,6 @@ import MovieCard from "../components/movieCard";
 import "../css/Home.css";
 import { searchMovies, getPopularMovies } from "../services/api";
 
-
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
@@ -27,9 +26,22 @@ function Home() {
     loadPopularMovies();
   }, []);
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
-    alert(searchQuery);
+    if (!searchQuery.trim()) return;
+    if (loading) return;
+
+    setLoading(true);
+    try {
+      const searchResults = await searchMovies(searchQuery);
+      setMovies(searchResults);
+      setError(null);
+    } catch (err) {
+      console.log(err);
+      setError("Search failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -49,8 +61,12 @@ function Home() {
         </button>
       </form>
 
-      {loading ? (<div className="loading"> Loading... </div>) : (
-          <div className="movies-grid">
+      {error && <div className="error-message"> {error} </div>}
+
+      {loading ? (
+        <div className="loading"> Loading... </div>
+      ) : (
+        <div className="movies-grid">
           {movies.map(
             (movie) =>
               movie.title.toLowerCase().startsWith(searchQuery) && (
@@ -59,8 +75,6 @@ function Home() {
           )}
         </div>
       )}
-
-    
     </div>
   );
 }
