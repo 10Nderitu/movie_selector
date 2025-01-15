@@ -8,8 +8,8 @@ function MovieCard ({movie}) {
     
     function onFavorite(e){
         e.preventDefault()
-        if (favorite) removeFromFavorites(movie.id)
-        else addToFavorites(movie)
+        if (favorite) removeFavorites(movie.id)
+        else addFavorites(movie)
     }
 
     return <div className = "movie-card">
@@ -25,7 +25,9 @@ function MovieCard ({movie}) {
                 <h3>{movie.title}</h3>
                 <p>{movie.release_date?.split("-")[0]}</p>
             </div>
+            /*route */
     </div>
 }
+
 
 export default MovieCard
